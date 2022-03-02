@@ -17,7 +17,7 @@ const displayPhon = (data) => {
   const main = document.getElementById("main");
   console.log(main);
   data.forEach(phon => {
-     console.log(phon);
+    // console.log(phon);
      const div = document.createElement('div');
 
      div.classList.add("col-lg-4");
@@ -37,22 +37,23 @@ const displayPhon = (data) => {
 const phonDetails = (slug) => {
  fetch(`https://openapi.programming-hero.com/api/phone/${slug}`)
  .then(res => res.json())
- .then(data => {
-   const allphons = data.phons;
-   const singleCard = allphons.find(slug => slug.code === slug)
-  //console.log(allphons);
-   const div = document.createElement("div");
-   main.innerHTML="";
-          div.innerHTML=`
-              <div class="card" style="width: 18rem;">
-                  <img src="${singleCard.image}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                      <h5 class="card-title">${singleCard.suit}</h5>
-                      <p class="card-text">${singleCard.storage}</p>
-                      <p class="card-text">${singleCard.memorey}</p>
-                  </div>
-              </div>
-          `
-          main.appendChild(div)
- })
+ .then (data => console.log (data.data.mainFeatures))
+
+
+ const phonDetail = document.getElementById('phone-details')
+ phonDetail.innerHTML = '';
+ 
+ const div = document.createElement('div');
+ div.innerHTML=`
+ <div class="card" style="width: 18rem;">
+     <img src="${phon.image}" class="card-img-top" alt="...">
+     <div class="card-body">
+         <h5 class="card-title">${mainFeatures.storage}</h5>
+         <p class="card-text">${mainFeatures.chipSet}</p>
+         <p class="card-text">${mainFeatures.memorey}</p>
+     </div>
+ </div>
+ `
+ phonDetail.appendChild(div);
+
 }
