@@ -1,23 +1,41 @@
+document.getElementById("error-massage").style.display = "none";
+
 const searchMobile = () => {
   const searchField = document.getElementById('search-field');
   const searchText = searchField.value;
-  console.log(searchText);
+  //console.log(searchText);
 
   searchField.value = '';
+  
+  document.getElementById("error-massage").style.display = "none";
+  if (searchText == "") {
+  alert("Please enter a name")
+}
+  else {
   const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
 
-  console.log(url);
+  //console.log(url);
   fetch(url)
-      .then(res => res.json())
-      .then(data => displayPhon(data.data));
-  //.then(data => displaySearchResult(data.data));
+  .then(res => res.json())
+  .then(data => displayPhon(data.data))
+  .catch(error => displayError(error))
+}
+}
+const displayError = (error) => {
+  const errorIs = document.getElementById("error-massage")
+    errorIs.style.display = "block";
+    const show = document.createElement("h6");
+    show.innerHTML = `
+    <p class="alert alert-danger">Error: ${error}</p>
+    `
+    errorIs.appendChild(show);
 
 }
+
 const displayPhon = (data) => {
   const main = document.getElementById("main");
-  console.log(main);
+  //console.log(main);
   const limitedPhon = data.slice(0, 20);
-  
   limitedPhon.forEach(phon => {
       // console.log(phon);
       const div = document.createElement('div');
@@ -42,7 +60,7 @@ const phonDetails = (slug) => {
       .then(data => showPhone(data));
 }
 const showPhone = (phon) => {
-  console.log(phon);
+  //console.log(phon);
   const phonDetail = document.getElementById('phone-details')
   phonDetail.innerHTML = '';
 
