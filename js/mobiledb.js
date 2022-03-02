@@ -34,6 +34,7 @@ const displayError = (error) => {
 
 const displayPhon = (data) => {
   const main = document.getElementById("main");
+  main.innerHTML = '';
   //console.log(main);
   const limitedPhon = data.slice(0, 20);
   limitedPhon.forEach(phon => {
@@ -43,7 +44,7 @@ const displayPhon = (data) => {
       div.classList.add("col-lg-4");
       div.classList.add("mb-5");
       div.innerHTML = ` 
-   <div class="card" style= "width: 18rem";>
+   <div class="card mx-auto" style= "width: 18rem";>
    <img src="${phon.image}" class="card-img-top" alt="...">
    <div class="card-body">
         <h5 class="card-title">${phon.phone_name}</h5>
@@ -66,7 +67,7 @@ const showPhone = (phon) => {
 
   const div = document.createElement('div');
   div.innerHTML = `
-<div class="card mb-3" style="width: 18rem;">
+<div class="card mx-auto mb-3" style="width: 18rem;">
    <img src="${phon.data.image}" class="card-img-top" alt="...">
    <div class="card-body">
        <h5 class="card-title">${phon.data.mainFeatures.storage}</h5>
