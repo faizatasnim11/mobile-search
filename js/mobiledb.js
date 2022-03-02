@@ -66,7 +66,7 @@ const showPhone = (phon) => {
 
   const div = document.createElement('div');
   div.innerHTML = `
-<div class="card" style="width: 18rem;">
+<div class="card mb-3" style="width: 18rem;">
    <img src="${phon.data.image}" class="card-img-top" alt="...">
    <div class="card-body">
        <h5 class="card-title">${phon.data.mainFeatures.storage}</h5>
